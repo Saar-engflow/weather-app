@@ -6,14 +6,14 @@ const getBtn = document.getElementById('get-weather');
 //  data is fetched from the openweather map using the async function and the api i provided from my account in openwathermap. its free by the way :}.
 const fetchWeather = async () =>{
   
-  const city = document.getElementById('location-input').value.trim();
+  const city = document.getElementById('location-input').value.trim();git push
 
   if (!city) return alert('enter city');
 
      getWeather.textContent = "Loading.....please wait";
 
   try {
-      const res = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fddcb2c933aff748cdd3c445c8a34c7a&units=metric`);
+      const res = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fddcb2c933aff748cdd3c445c8a34c7a&units=metric`); //fake key by the way.
       const data =  await res.json();
 
       if(Number(data.cod) !== 200)  throw new Error(`sorry ${data.message}`);
