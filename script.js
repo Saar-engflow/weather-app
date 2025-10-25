@@ -21,9 +21,9 @@ const fetchWeather = async () =>{
       getWeather.innerHTML = `<div style = "background-color:blue; margin-top: 20px; padding :60px; border-radius:14px;color:white;">
 
       <h1>: here is your weather!</h1>
-        <h2>: ${data.main.temp} ^C</h2> 
-        <h2>: ${data.main.humidity} %</h2>   
-        <h2>: ${data.wind.speed} m/s</h2>     
+        <h2>Temperature:${data.main.temp} ^C</h2> 
+        <h2>Humidity: ${data.main.humidity} %</h2>   
+        <h2>wind speed: ${data.wind.speed} m/s</h2>     
          <p>${data.weather[0].description}</p>
       `;
 
