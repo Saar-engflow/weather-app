@@ -1,30 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherSphere • Modern Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
 </head>
-
 <body>
-<!--     
-    My first weather app
-    author - Robins Banda
-    made with plain js , css and html  -->
+    <div class="container">
+        <header>
+            <h1 class="title">🌤️ WeatherSphere</h1>
+            <p class="subtitle">Real-time weather insights • Accurate forecasts • Beautiful interface</p>
+        </header>
+        
+        <div class="search-container">
+            <div class="input-wrapper">
+                <i class="fas fa-search input-icon"></i>
+                <input 
+                    type="text" 
+                    id="location-input" 
+                    placeholder="Enter city name (e.g., New York, London, Tokyo)">
+            </div>
+            <button id="get-weather">
+                <i class="fas fa-cloud-sun"></i>
+                Search
+            </button>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" id="location-icon">
+                <i class="fas fa-location-crosshairs"></i>
+                My Location
+            </button>
+            <button class="control-btn" id="unit-toggle">
+                <i class="fas fa-thermometer"></i>
+                °C / °F
+            </button>
+        </div>
+        
+        <div id="show-weather">
+            <!-- Weather data will be displayed here -->
+        </div>
+        
+        <footer style="margin-top: 32px; text-align: center; color: #718096; font-size: 12px;">
+            <p>Powered by OpenWeatherMap • Built with pure HTML, CSS & JavaScript</p>
+            <p style="margin-top: 4px;">Data refreshes automatically • © 2026 WeatherSphere</p>
+        </footer>
+    </div>
 
-<div class = "container">
-    <h1 class ="title">-Weather Dashboard-</h1>
-     
-   <label for="location-input">Location : </label>
-   <input id= "location-input" type="text" placeholder = "Enter current City">  <!--insert the city you want to inquire the weather for -->
-   <button id ="get-weather">get weather </button>
-
-   <div id = "show-weather"></div> 
- </div>
-    
-
-      
-  <script src = "script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
