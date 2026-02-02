@@ -24,11 +24,11 @@ const formatTime = (timestamp, timezone) => {
 
 const formatDate = (timestamp) => {
     const date = new Date(timestamp * 1000);
-    return date.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     });
 };
 
@@ -52,7 +52,7 @@ const getWeatherIcon = (condition) => {
 // Convert temperature unit
 const convertTemp = (temp) => {
     if (!isCelsius) {
-        return (temp * 9/5 + 32).toFixed(1); // Convert to Fahrenheit
+        return (temp * 9 / 5 + 32).toFixed(1); // Convert to Fahrenheit
     }
     return temp.toFixed(1);
 };
@@ -65,7 +65,7 @@ const getTempUnit = () => {
 // Fetch weather data
 const fetchWeather = async (city = null) => {
     const cityName = city || locationInput.value.trim();
-    
+
     if (!cityName) {
         showError('Please enter a city name');
         return;
@@ -81,18 +81,16 @@ const fetchWeather = async (city = null) => {
 
     try {
         // Using OpenWeatherMap API
-        const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric`
-        );
-        
+        const response = await fetch(`/api/weather?city=${encodeURIComponent(cityName)}`);
+
         if (!response.ok) {
             throw new Error('City not found. Please try again.');
         }
-        
+
         const data = await response.json();
         lastWeatherData = data;
         displayWeather(data);
-        
+
     } catch (error) {
         showError(error.message);
     }
@@ -104,16 +102,16 @@ const displayWeather = (data) => {
     const main = data.main;
     const wind = data.wind;
     const sys = data.sys;
-    
+
     const temp = convertTemp(main.temp);
     const feelsLike = convertTemp(main.feels_like);
     const tempMin = convertTemp(main.temp_min);
     const tempMax = convertTemp(main.temp_max);
     const unit = getTempUnit();
-    
+
     const sunrise = formatTime(sys.sunrise, data.timezone);
     const sunset = formatTime(sys.sunset, data.timezone);
-    
+
     getWeatherDiv.innerHTML = `
         <div class="weather-card">
             <div class="weather-header">
@@ -212,7 +210,7 @@ const getCurrentLocation = () => {
                 <p>Detecting your location...</p>
             </div>
         `;
-        
+
         navigator.geolocation.getCurrentPosition(
             async (position) => {
                 try {
@@ -220,14 +218,14 @@ const getCurrentLocation = () => {
                     const response = await fetch(
                         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
                     );
-                    
+
                     if (!response.ok) throw new Error('Location not found');
-                    
+
                     const data = await response.json();
                     locationInput.value = data.name;
                     lastWeatherData = data;
                     displayWeather(data);
-                    
+
                 } catch (error) {
                     showError('Could not get weather for your location');
                 }
@@ -246,7 +244,7 @@ const toggleUnit = () => {
     isCelsius = !isCelsius;
     unitToggle.textContent = isCelsius ? '°C' : '°F';
     unitToggle.classList.toggle('active', !isCelsius);
-    
+
     if (lastWeatherData) {
         displayWeather(lastWeatherData);
     }
