@@ -1,5 +1,4 @@
 // /api/weather.js
-import fetch from 'node-fetch'; // Node 18+ can skip this, fetch is global
 
 export default async function handler(req, res) {
   const city = req.query.city;
