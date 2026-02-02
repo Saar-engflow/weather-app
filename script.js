@@ -14,7 +14,7 @@ let lastWeatherData = null;
 
 // Get API key from environment (in production, you'd need a backend proxy)
 // For now, using placeholder - replace with your actual key
-const API_KEY = 'your_api_key'; // Should come from .env in real implementation
+const API_KEY = 'API_KEY'; // Should come from .env in real implementation
 
 // Format date and time
 const formatTime = (timestamp, timezone) => {
